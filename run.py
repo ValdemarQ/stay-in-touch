@@ -1,7 +1,17 @@
+import datetime
+
+#Global variables
+date = datetime.datetime.now()
+
+
 #Print Greetings message with information
 
 #lists of friends
 a_list = []
+b_list = []
+c_list = []
+d_list = []
+
 
 
 #Sort lists of friends into alphabetical order.
@@ -17,8 +27,9 @@ def add_friend_to_list():
     #check which list a,b,c,d
     #add new_friend to that list
     #else, error and ask to repeat the proccess and only A,B,C,D
-
-
+    
+    #date when friend added, as reference to when contact next 
+    date_when_added = date.strftime("%j")
 
 #Remove_friend function
 def remove_friend():

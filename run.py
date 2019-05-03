@@ -14,6 +14,9 @@ d_list = []
 
 
 
+
+
+
 #Sort lists of friends into alphabetical order.
 
 class Friend:
@@ -24,7 +27,27 @@ class Friend:
         self.just_date = just_date
 
 
-#Add_friend function
+def check_friends_name():
+    new_friend = input('Please enter friends name you want to add. Only Letters and whitespaces allowed')
+
+    while True:
+        if all(x.isalpha() or x.isspace() for x in new_friend):
+            return new_friend
+        new_friend = input('Please enter friends name you want to add. Only Letters and whitespaces allowed')  
+
+def check_list():
+    possible_lists = ('abcd')
+    add_friend_to_list = input('Into which list you want to add friend? A,B,C,D')
+    
+    while True:
+        if add_friend_to_list.lower() in possible_lists:
+            print(add_friend_to_list.lower())
+            return add_friend_to_list.lower()
+        add_friend_to_list = input('Into which list you want to add friend? A,B,C,D')
+     
+
+
+#Create new friend instnace and add to list
 def add_friend_to_list():
     #date when friend added, as reference to when contact next 
     last_contacted = date.strftime("%a")
@@ -42,13 +65,7 @@ def add_friend_to_list():
     a_list.append({'name': new_friend,'list':list_to_add, 'last_contacted': last_contacted, 'day_number': day_number})
 
 #check friends name, only lettters and whitespaces allowed
-def check_friends_name():
-    new_friend = input('Please enter friends name you want to add. Only Letters and whitespaces allowed')
-    
-    while True:
-        if all(x.isalpha() or x.isspace() for x in new_friend):
-            return new_friend
-        new_friend = input('Please enter friends name you want to add. Only Letters and whitespaces allowed')   
+
 
 #Remove_friend function
 def remove_friend():

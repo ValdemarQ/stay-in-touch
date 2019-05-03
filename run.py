@@ -27,19 +27,28 @@ class Friend:
 #Add_friend function
 def add_friend_to_list():
     #date when friend added, as reference to when contact next 
-    last_contacted = date.strftime("%j")
+    last_contacted = date.strftime("%a")
+    day_number = date.strftime("%j")
+    
 
     new_friend = input('Please enter  friends name you want to add to list')
-    #check atleast 3 chars
-    #check for only alpha and spaces,no numbers
+    #check_friends_name()
     
     list_to_add = input('Into which list would you like to add this friend? A,B,C,D?')
     #to lowercase
     #check which list a,b,c,d
     #add new_friend to that list
     #else, error and ask to repeat the proccess and only A,B,C,D
+    a_list.append({'name': new_friend,'list':list_to_add, 'last_contacted': last_contacted, 'day_number': day_number})
+
+#check friends name, only lettters and whitespaces allowed
+def check_friends_name():
+    new_friend = input('Please enter friends name you want to add. Only Letters and whitespaces allowed')
     
-    
+    while True:
+        if all(x.isalpha() or x.isspace() for x in new_friend):
+            return new_friend
+        new_friend = input('Please enter friends name you want to add. Only Letters and whitespaces allowed')   
 
 #Remove_friend function
 def remove_friend():

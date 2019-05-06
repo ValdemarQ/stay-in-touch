@@ -5,6 +5,12 @@ date = datetime.datetime.now()
 
 
 #Print Greetings message with information
+print('Stay in touch with hundreds of people')
+print('Every person you’ve ever met has the potential to help you.')
+print('If you keep in touch and stay on their mind, there’s a good chance an opportunity will come your way. \n But if you don’t keep in touch, that potential is almost gone. \n Out of touch, out of mind.')
+print('So you need to make a simple automatic system to keep in touch without \n relying on your memory. Use your database to label everyone in a category like this: \n A list: Very important people. Contact every three weeks. \n B list: Important people. Contact every two months. \n C list: Most people. Contact every six months. \n D list: Demoted people. Contact once a year, to make sure you still have their correct info.')
+
+
 
 #lists of friends
 a_list = []
@@ -12,12 +18,8 @@ b_list = []
 c_list = []
 d_list = []
 
-
-
-
-
-
 #Sort lists of friends into alphabetical order.
+
 
 class Friend:
     def __init__(self,name,list_to,contact_date, just_date):
@@ -41,30 +43,35 @@ def check_list():
     
     while True:
         if add_friend_to_list.lower() in possible_lists:
-            print(add_friend_to_list.lower())
             return add_friend_to_list.lower()
         add_friend_to_list = input('Into which list you want to add friend? A,B,C,D')
      
 
 
 #Create new friend instnace and add to list
-def add_friend_to_list():
-    #date when friend added, as reference to when contact next 
-    last_contacted = date.strftime("%a")
+def add_friend():
+    last_contacted = date.strftime("%Y/%m/%d")
     day_number = date.strftime("%j")
     
-
-    new_friend = input('Please enter  friends name you want to add to list')
-    #check_friends_name()
+    friend_name = check_friends_name()
     
-    list_to_add = input('Into which list would you like to add this friend? A,B,C,D?')
-    #to lowercase
-    #check which list a,b,c,d
-    #add new_friend to that list
-    #else, error and ask to repeat the proccess and only A,B,C,D
-    a_list.append({'name': new_friend,'list':list_to_add, 'last_contacted': last_contacted, 'day_number': day_number})
-
-#check friends name, only lettters and whitespaces allowed
+    list_to_add = check_list()
+    
+    #appends friend to chosen list
+    if list_to_add == 'a':
+        print('Friend successfully added to list A')
+        return a_list.append({'name': friend_name, 'last_contacted': last_contacted, 'day_number': day_number})
+    elif list_to_add == 'b':
+        print('Friend successfully added to list B')
+        return b_list.append({'name': friend_name, 'last_contacted': last_contacted, 'day_number': day_number})
+        
+    elif list_to_add == 'c':
+        print('Friend successfully added to list C')
+        return c_list.append({'name': friend_name, 'last_contacted': last_contacted, 'day_number': day_number})
+        
+    elif list_to_add == 'd':
+        print('Friend successfully added to list D')
+        return d_list.append({'name': friend_name, 'last_contacted': last_contacted, 'day_number': day_number})
 
 
 #Remove_friend function

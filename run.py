@@ -61,20 +61,21 @@ def add_friend():
     list_to_add = check_list()
     
     #appends friend to chosen list
-    if list_to_add == 'a':
+     if list_to_add == 'a':
         print('Friend successfully added to list A')
-        return a_list.append({'name': friend_name, 'last_contacted': last_contacted, 'day_number': day_number})
+        lists['a_list'] += [{'name': friend_name, 'last_contacted': last_contacted, 'day_number': day_number}]
+        
     elif list_to_add == 'b':
         print('Friend successfully added to list B')
-        return b_list.append({'name': friend_name, 'last_contacted': last_contacted, 'day_number': day_number})
+        lists['b_list'] += [{'name': friend_name, 'last_contacted': last_contacted, 'day_number': day_number}]
         
     elif list_to_add == 'c':
         print('Friend successfully added to list C')
-        return c_list.append({'name': friend_name, 'last_contacted': last_contacted, 'day_number': day_number})
+        lists['c_list'] += [{'name': friend_name, 'last_contacted': last_contacted, 'day_number': day_number}]
         
     elif list_to_add == 'd':
         print('Friend successfully added to list D')
-        return d_list.append({'name': friend_name, 'last_contacted': last_contacted, 'day_number': day_number})
+        lists['d_list'] += [{'name': friend_name, 'last_contacted': last_contacted, 'day_number': day_number}]
 
 
 #Remove_friend function

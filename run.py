@@ -10,6 +10,9 @@ print('Every person you’ve ever met has the potential to help you.')
 print('If you keep in touch and stay on their mind, there’s a good chance an opportunity will come your way. \n But if you don’t keep in touch, that potential is almost gone. \n Out of touch, out of mind.')
 print('So you need to make a simple automatic system to keep in touch without \n relying on your memory. Use your database to label everyone in a category like this: \n A list: Very important people. Contact every three weeks. \n B list: Important people. Contact every two months. \n C list: Most people. Contact every six months. \n D list: Demoted people. Contact once a year, to make sure you still have their correct info.')
 
+#New lists as single dictionary
+lists = {'a_list': [],'b_list': [], 'c_list': [], 'd_list': []}
+
 
 
 #lists of friends

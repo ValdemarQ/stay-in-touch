@@ -80,9 +80,15 @@ def add_friend():
 
 #Remove_friend function
 def remove_friend():
-    #which friend to remove?
-    #find friend if found remove + message removed
-    #if friend not found + message no friend found
+    friend_name = check_friends_name()
+
+    for i in lists:
+        for person in lists[i]:
+            if person['name'].lower() == friend_name.lower():
+                    print('Person found' ,person['name'],person['last_contacted'],'& deleted')
+                    print(lists[i])
+                    del lists[i][lists[i].index(person)]
+                    break
 
 
 #Edit_friends name

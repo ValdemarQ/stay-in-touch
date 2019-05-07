@@ -90,12 +90,23 @@ def remove_friend():
                     del lists[i][lists[i].index(person)]
                     break
 
-
-#Edit_friends name
-def edit_friend():
-    #which friend to edit?
-    #Rename friend if found
-    #if friend not found, error
+#rename friend
+def rename_friend():
+    #whom to rename?
+    print('Who you want to rename? Enter name')
+    friend_name = check_friends_name()
+    
+    #loops lists to find if exists
+    for i in lists:
+        for person in lists[i]:
+            #renames friends if found
+            if person['name'].lower() == friend_name.lower():
+                #Request new name for friend
+                print('Enter new name for this friend')
+                new_name = check_friends_name()
+                lists[i][lists[i].index(person)]['name'] = new_name
+                break
+                
 
 #Move friend from one list to another
 def move_friend_to_other_list():

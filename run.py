@@ -108,16 +108,42 @@ def rename_friend():
                 
 
 #Move friend from one list to another
-def move_friend_to_other_list():
-    #which friend
-        #if friend found
-            #to which list?
-                #if list found
-                    #move friend + success message
-                #else:
-                    #list not found + error message
-        #else:
-            #friend not found + error message
+def move_to_other_list():
+    friend_name = check_friends_name()
+        
+    for i in lists:
+        for y in lists[i]:
+            
+            if y['name'].lower() == friend_name.lower():
+                print('Friend is found!')
+                new_list = check_list()
+        
+                if new_list == 'a':
+                    lists['a_list'].append(lists[i][lists[i].index(y)])
+                    del lists[i][lists[i].index(y)]
+                    print('Friend successfully moved to List A')
+                    return
+                    
+                elif new_list == 'b':
+                    lists['b_list'].append(lists[i][lists[i].index(y)])
+                    del lists[i][lists[i].index(y)]
+                    print('Friend successfully moved to List B')
+                    return
+                
+                elif new_list =='c':
+                    lists['c_list'].append(lists[i][lists[i].index(y)])
+                    del lists[i][lists[i].index(y)]
+                    print('Friend successfully moved to List C')
+                    return
+                
+                elif new_list == 'd':
+                    lists['d_list'].append(lists[i][lists[i].index(y)])
+                    del lists[i][lists[i].index(y)]
+                    print('Friend successfully moved to List D')
+                    return
+                
+    print('Sorry, something went wrong')
+
 
 
 #Friend has been contacted - to reset meter
@@ -126,5 +152,5 @@ def move_friend_to_other_list():
 
 #Systems - Send reminder to contact friend - #Email via sendgrid etc.
 
-
+#Check for duplicaates if friend exists - so no duplicate items.
 

@@ -98,14 +98,13 @@ def rename_friend():
     
     #loops lists to find if exists
     for i in lists:
-        for person in lists[i]:
-            #renames friends if found
-            if person['name'].lower() == friend_name.lower():
-                #Request new name for friend
-                print('Enter new name for this friend')
+        for y in lists[i]:
+            if y['name'].lower() == friend_name.lower():
+                print('Friend is found. Enter new name for a friend')
                 new_name = check_friends_name()
-                lists[i][lists[i].index(person)]['name'] = new_name
-                break
+                lists[i][lists[i].index(y)]['name'] = new_name
+                return
+    print('Friend not found')
                 
 
 #Move friend from one list to another

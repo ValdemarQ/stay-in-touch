@@ -85,10 +85,10 @@ def remove_friend():
     for i in lists:
         for person in lists[i]:
             if person['name'].lower() == friend_name.lower():
-                    print('Person found' ,person['name'],person['last_contacted'],'& deleted')
-                    print(lists[i])
-                    del lists[i][lists[i].index(person)]
-                    break
+                print('Person found' ,person['name'],person['last_contacted'],'& deleted')
+                del lists[i][lists[i].index(person)]
+                return
+    print('Friend not found')
 
 #rename friend
 def rename_friend():

@@ -138,13 +138,12 @@ def move_to_other_list():
     print('Sorry, something went wrong')
 
 
-#Every new day - adds 1 to day_number for all friends
 def day_number_add_one():
     for i in lists:
         for y in lists[i]:
             lists[i][lists[i].index(y)]['day_number'] += 1
 
-#Every new day - checks lists to find whom to contact today
+
 def whom_contact_today():
     a_days = 21
     b_days = 60
@@ -183,7 +182,16 @@ def whom_contact_today():
                     #then send_message
                     #reset day_number to 0
                     lists['d_list'][lists['d_list'].index(y)]['day_number'] = 0
-    
+
+
+#Every new day - adds 1 to day_number for all friends
+#Every new day - checks lists to find whom to contact today
+schedule.every().day.at("10:30").do(day_number_add_one)
+schedule.every().day.at("12:30").do(whom_contact_today)
+
+while True:
+    schedule.run_pending()
+    time.sleep(60)
 
 #Function sending email reminder to contact friend via sendgrid etc.
 

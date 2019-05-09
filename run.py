@@ -1,4 +1,6 @@
 import datetime
+import schedule
+import time
 
 #Global variables
 date = datetime.datetime.now()
@@ -136,12 +138,20 @@ def move_to_other_list():
     print('Sorry, something went wrong')
 
 
+#Every new day - adds 1 to day_number for all friends
+def day_number_add_one():
+    for i in lists:
+        for y in lists[i]:
+            lists[i][lists[i].index(y)]['day_number'] += 1
 
-#Friend has been contacted - to reset meter
+#Every new day - checks lists to find whom to contact today
+  #Every list at different intervals 30, 60, 180,365  
+    #if found:
+    #  send email to contact
+    #  reset day_number back to 0
+    
 
-#System check - checks lists for which friends to contact
-
-#Systems - Send reminder to contact friend - #Email via sendgrid etc.
+#Function sending email reminder to contact friend via sendgrid etc.
 
 #Check for duplicaates if friend exists - so no duplicate items.
 

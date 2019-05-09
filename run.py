@@ -61,7 +61,7 @@ def add_friend():
     list_to_add = check_list()
     
     #appends friend to chosen list
-     if list_to_add == 'a':
+    if list_to_add == 'a':
         print('Friend successfully added to list A')
         lists['a_list'] += [{'name': friend_name, 'last_contacted': last_contacted, 'day_number': day_number}]
         

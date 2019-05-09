@@ -145,10 +145,44 @@ def day_number_add_one():
             lists[i][lists[i].index(y)]['day_number'] += 1
 
 #Every new day - checks lists to find whom to contact today
-  #Every list at different intervals 30, 60, 180,365  
-    #if found:
-    #  send email to contact
-    #  reset day_number back to 0
+def whom_contact_today():
+    a_days = 21
+    b_days = 60
+    c_days = 180
+    d_days = 365
+    
+    for i in lists:    
+        if i == 'a_list':
+            for y in lists['a_list']:
+                if lists['a_list'][lists['a_list'].index(y)]['day_number'] == a_days:
+                    print('A List match found  \n',lists['a_list'][lists['a_list'].index(y)])
+                    #then send_message
+                    #reset day_number to 0
+                    lists['a_list'][lists['a_list'].index(y)]['day_number'] = 0
+        
+        if i == 'b_list':
+            for y in lists['b_list']:
+                if lists['b_list'][lists['b_list'].index(y)]['day_number'] == b_days:
+                    print('B List match found \n',lists['b_list'][lists['b_list'].index(y)])
+                    #then send_message
+                    #reset day_number to 0
+                    lists['b_list'][lists['b_list'].index(y)]['day_number'] = 0
+        
+        if i == 'c_list':
+            for y in lists['c_list']:
+                if lists['c_list'][lists['c_list'].index(y)]['day_number'] == c_days:
+                    print('C List match found  \n',lists['c_list'][lists['c_list'].index(y)])
+                    #then send_message
+                    #reset day_number to 0
+                    lists['c_list'][lists['c_list'].index(y)]['day_number'] = 0
+        
+        if i == 'd_list':
+            for y in lists['d_list']:
+                if lists['d_list'][lists['d_list'].index(y)]['day_number'] == d_days:
+                    print('D List match found  \n',lists['d_list'][lists['d_list'].index(y)])
+                    #then send_message
+                    #reset day_number to 0
+                    lists['d_list'][lists['d_list'].index(y)]['day_number'] = 0
     
 
 #Function sending email reminder to contact friend via sendgrid etc.

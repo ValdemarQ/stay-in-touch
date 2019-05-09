@@ -13,17 +13,9 @@ print('So you need to make a simple automatic system to keep in touch without \n
 #New lists as single dictionary
 lists = {'a_list': [],'b_list': [], 'c_list': [], 'd_list': []}
 
+#Sort lists of friends into alphabetical order before displaying.
 
-
-#lists of friends
-a_list = []
-b_list = []
-c_list = []
-d_list = []
-
-#Sort lists of friends into alphabetical order.
-
-
+#what to do with class?
 class Friend:
     def __init__(self,name,list_to,contact_date, just_date):
         self.name = name
@@ -54,7 +46,6 @@ def check_list():
 #Create new friend instnace and add to list
 def add_friend():
     last_contacted = date.strftime("%Y/%m/%d")
-    day_number = date.strftime("%j")
     
     friend_name = check_friends_name()
     
@@ -63,19 +54,19 @@ def add_friend():
     #appends friend to chosen list
     if list_to_add == 'a':
         print('Friend successfully added to list A')
-        lists['a_list'] += [{'name': friend_name, 'last_contacted': last_contacted, 'day_number': day_number}]
+        lists['a_list'] += [{'name': friend_name, 'last_contacted': last_contacted, 'day_number': 0}]
         
     elif list_to_add == 'b':
         print('Friend successfully added to list B')
-        lists['b_list'] += [{'name': friend_name, 'last_contacted': last_contacted, 'day_number': day_number}]
+        lists['b_list'] += [{'name': friend_name, 'last_contacted': last_contacted, 'day_number': 0}]
         
     elif list_to_add == 'c':
         print('Friend successfully added to list C')
-        lists['c_list'] += [{'name': friend_name, 'last_contacted': last_contacted, 'day_number': day_number}]
+        lists['c_list'] += [{'name': friend_name, 'last_contacted': last_contacted, 'day_number': 0}]
         
     elif list_to_add == 'd':
         print('Friend successfully added to list D')
-        lists['d_list'] += [{'name': friend_name, 'last_contacted': last_contacted, 'day_number': day_number}]
+        lists['d_list'] += [{'name': friend_name, 'last_contacted': last_contacted, 'day_number': 0}]
 
 
 #Remove_friend function

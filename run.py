@@ -27,21 +27,21 @@ class Friend:
 
 
 def check_friends_name():
-    new_friend = input('Please enter friends name you want to add. Only Letters and whitespaces allowed')
+    new_friend = input('Please enter friends name you want to add. Only Letters and whitespaces allowed \n')
 
     while True:
         if all(x.isalpha() or x.isspace() for x in new_friend):
             return new_friend
-        new_friend = input('Please enter friends name you want to add. Only Letters and whitespaces allowed')  
+        new_friend = input('Please enter friends name you want to add. Only Letters and whitespaces allowed \n')  
 
 def check_list():
     possible_lists = ('abcd')
-    add_friend_to_list = input('Into which list you want to add friend? A,B,C,D')
+    add_friend_to_list = input('Into which list you want to add friend? A,B,C,D \n')
     
     while True:
         if add_friend_to_list.lower() in possible_lists:
             return add_friend_to_list.lower()
-        add_friend_to_list = input('Into which list you want to add friend? A,B,C,D')
+        add_friend_to_list = input('Into which list you want to add friend? A,B,C,D \n')
      
 
 
@@ -189,15 +189,74 @@ def whom_contact_today():
 
 #Every new day - adds 1 to day_number for all friends
 #Every new day - checks lists to find whom to contact today
-schedule.every().day.at("10:30").do(day_number_add_one)
+'''schedule.every().day.at("10:30").do(day_number_add_one)
 schedule.every().day.at("12:30").do(whom_contact_today)
 
 while True:
     schedule.run_pending()
-    time.sleep(60)
+    time.sleep(1)'''
 
 #Function sending email reminder to contact friend via sendgrid etc.
     #user Sendgrid
 
 #Check for duplicaates if friend exists - so no duplicate items.
 
+
+def extra_commands():
+    extra_command = input('Would you like to perform anything else? Yes / No \n')
+    if extra_command == 'yes':
+        run_system()
+    else:
+        print('Bye')
+
+
+def run_system():
+    command = input('Please enter a command: \n add - to add new friend \n rename - to rename friend \n move - to move friend to new list \n remove - to remove friend \n show - to view current lists \n Command: ')
+    
+    if command.lower() == 'add':
+        add_friend()
+        extra_commands()
+        
+    elif command.lower() == 'rename':
+        rename_friend()
+        extra_commands()
+            
+    elif command.lower() == 'move':
+        move_to_other_list()
+        extra_commands()
+            
+    elif command.lower() == 'remove':
+        remove_friend()
+        extra_commands()
+    
+    elif command.lower() == 'show':
+        print('A List \n')
+        for i in lists:
+            if i == 'a_list':
+                for y in lists['a_list']:
+                    print(y['name'],'| Last contacted',y['last_contacted'])
+        
+        print('\nB List \n')
+        for i in lists:
+            if i == 'b_list':
+                for y in lists['b_list']:
+                    print(y['name'],'| Last contacted',y['last_contacted'])
+                    
+        print('\nC List \n')
+        for i in lists:
+            if i == 'c_list':
+                for y in lists['c_list']:
+                    print(y['name'],'| Last contacted',y['last_contacted'])
+                    
+        print('\nD List \n')
+        for i in lists:
+            if i == 'd_list':
+                for y in lists['d_list']:
+                    print(y['name'],'| Last contacted',y['last_contacted'])
+        extra_commands()
+              
+            
+    else:
+        run_system()
+
+run_system()

@@ -10,6 +10,29 @@ print('Stay in touch with hundreds of people')
 print('Every person you’ve ever met has the potential to help you.')
 print('If you keep in touch and stay on their mind, there’s a good chance an opportunity will come your way. \n But if you don’t keep in touch, that potential is almost gone. \n Out of touch, out of mind.')
 print('So you need to make a simple automatic system to keep in touch without \n relying on your memory. Use your database to label everyone in a category like this: \n A list: Very important people. Contact every three weeks. \n B list: Important people. Contact every two months. \n C list: Most people. Contact every six months. \n D list: Demoted people. Contact once a year, to make sure you still have their correct info.')
+#Extra texts
+'''
+To Have Great Relationships, Always Make the First Move.
+Always make the first move.
+The meaning is simple: if you can help the relationship, then do it. 
+Don’t wait for the other person to act (even if you don’t want to).
+
+If you want to have deep, meaningful relationships with your friends, family, and even just the people in your day-to-day life, make the first move — even if it should be them. Be the first to:
+
+- Initiate the conversation
+- Send the first text
+- Say you miss them
+- Say you love them
+- Apologize and ask for forgiveness
+- Organize a hangout
+- Compliment them
+- Thank them
+- Tell them you appreciate what they did
+
+'''
+
+
+
 
 #Dicionary of lists where date is store
 lists = {'a_list': [],'b_list': [], 'c_list': [], 'd_list': []}

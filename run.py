@@ -81,25 +81,30 @@ def add_friend():
     
     friend_name = check_friends_name()
     
-    list_to_add = check_list()
-    
-    #appends friend to chosen list
-    if list_to_add == 'a':
-        print('Friend successfully added to list A')
-        lists['a_list'] += [{'name': friend_name, 'last_contacted': last_contacted, 'day_number': 0}]
+    #checks if name does not exist, if not, creates new friend and allocates to chosen list. 
+    if is_name_duplicate(friend_name) == False:
+        list_to_add = check_list()
         
-    elif list_to_add == 'b':
-        print('Friend successfully added to list B')
-        lists['b_list'] += [{'name': friend_name, 'last_contacted': last_contacted, 'day_number': 0}]
-        
-    elif list_to_add == 'c':
-        print('Friend successfully added to list C')
-        lists['c_list'] += [{'name': friend_name, 'last_contacted': last_contacted, 'day_number': 0}]
-        
-    elif list_to_add == 'd':
-        print('Friend successfully added to list D')
-        lists['d_list'] += [{'name': friend_name, 'last_contacted': last_contacted, 'day_number': 0}]
+        #appends friend to chosen list
+        if list_to_add == 'a':
+            print('Friend successfully added to list A')
+            lists['a_list'] += [{'name': friend_name, 'last_contacted': last_contacted, 'day_number': 0}]
 
+        elif list_to_add == 'b':
+            print('Friend successfully added to list B')
+            lists['b_list'] += [{'name': friend_name, 'last_contacted': last_contacted, 'day_number': 0}]
+
+        elif list_to_add == 'c':
+            print('Friend successfully added to list C')
+            lists['c_list'] += [{'name': friend_name, 'last_contacted': last_contacted, 'day_number': 0}]
+
+        elif list_to_add == 'd':
+            print('Friend successfully added to list D')
+            lists['d_list'] += [{'name': friend_name, 'last_contacted': last_contacted, 'day_number': 0}]
+    #if friend exists with such name, informs and askes to make with new name       
+    else:
+        print('Such friend already exists')
+        add_friend()
 
 def remove_friend():
     friend_name = check_friends_name()

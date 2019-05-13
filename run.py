@@ -73,6 +73,11 @@ def check_list():
         if add_friend_to_list.lower() in possible_lists:
             return add_friend_to_list.lower()
         add_friend_to_list = input('Into which list you want to add friend? A,B,C,D \n')
+
+
+def sort_lists_of_dicts():
+    for sub_list in lists:
+        lists[sub_list].sort(key=operator.itemgetter('name'))
      
 
 def add_friend():

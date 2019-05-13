@@ -2,7 +2,6 @@ import datetime
 import schedule
 import time
 
-#Global variables
 date = datetime.datetime.now()
 
 
@@ -12,10 +11,8 @@ print('Every person you’ve ever met has the potential to help you.')
 print('If you keep in touch and stay on their mind, there’s a good chance an opportunity will come your way. \n But if you don’t keep in touch, that potential is almost gone. \n Out of touch, out of mind.')
 print('So you need to make a simple automatic system to keep in touch without \n relying on your memory. Use your database to label everyone in a category like this: \n A list: Very important people. Contact every three weeks. \n B list: Important people. Contact every two months. \n C list: Most people. Contact every six months. \n D list: Demoted people. Contact once a year, to make sure you still have their correct info.')
 
-#New lists as single dictionary
+#Dicionary of lists where date is store
 lists = {'a_list': [],'b_list': [], 'c_list': [], 'd_list': []}
-
-#Sort lists of friends into alphabetical order before displaying.
 
 #what to do with class?
 class Friend:
@@ -27,12 +24,12 @@ class Friend:
 
 
 def check_friends_name():
-    new_friend = input('Please enter friends name you want to add. Only Letters and whitespaces allowed \n')
+    new_friend = input('Only Letters and whitespaces allowed \n')
 
     while True:
         if all(x.isalpha() or x.isspace() for x in new_friend):
             return new_friend
-        new_friend = input('Please enter friends name you want to add. Only Letters and whitespaces allowed \n')  
+        new_friend = input('Only Letters and whitespaces allowed \n')  
 
 def check_list():
     possible_lists = ('abcd')
@@ -44,9 +41,8 @@ def check_list():
         add_friend_to_list = input('Into which list you want to add friend? A,B,C,D \n')
      
 
-
-#Create new friend instnace and add to list
 def add_friend():
+    print('Please enter persons name you want to add')
     last_contacted = date.strftime("%Y/%m/%d")
     
     friend_name = check_friends_name()
@@ -71,116 +67,108 @@ def add_friend():
         lists['d_list'] += [{'name': friend_name, 'last_contacted': last_contacted, 'day_number': 0}]
 
 
-#Remove_friend function
 def remove_friend():
     friend_name = check_friends_name()
 
-    for i in lists:
-        for person in lists[i]:
+    for sub_list in lists:
+        for person in lists[sub_list]:
             if person['name'].lower() == friend_name.lower():
                 print('Person found' ,person['name'],person['last_contacted'],'& deleted')
-                del lists[i][lists[i].index(person)]
+                del lists[sub_list][lists[sub_list].index(person)]
                 return
     print('Friend not found')
 
-#rename friend
+
 def rename_friend():
-    #whom to rename?
     print('Who you want to rename? Enter name')
     friend_name = check_friends_name()
     
-    #loops lists to find if exists
-    for i in lists:
-        for y in lists[i]:
+    #loops lists to find if friend exists
+    for sub_list in lists:
+        for y in lists[sub_list]:
             if y['name'].lower() == friend_name.lower():
                 print('Friend is found. Enter new name for a friend')
                 new_name = check_friends_name()
-                lists[i][lists[i].index(y)]['name'] = new_name
+                lists[sub_list][lists[sub_list].index(y)]['name'] = new_name
                 return
     print('Friend not found')
                 
 
-#Move friend from one list to another
 def move_to_other_list():
     friend_name = check_friends_name()
         
-    for i in lists:
-        for y in lists[i]:
+    for sub_list in lists:
+        for y in lists[sub_list]:
             
             if y['name'].lower() == friend_name.lower():
                 print('Friend is found!')
                 new_list = check_list()
         
                 if new_list == 'a':
-                    lists['a_list'].append(lists[i][lists[i].index(y)])
-                    del lists[i][lists[i].index(y)]
+                    lists['a_list'].append(lists[sub_list][lists[sub_list].index(y)])
+                    del lists[sub_list][lists[sub_list].index(y)]
                     print('Friend successfully moved to List A')
                     return
                     
                 elif new_list == 'b':
-                    lists['b_list'].append(lists[i][lists[i].index(y)])
-                    del lists[i][lists[i].index(y)]
+                    lists['b_list'].append(lists[sub_list][lists[sub_list].index(y)])
+                    del lists[sub_list][lists[sub_list].index(y)]
                     print('Friend successfully moved to List B')
                     return
                 
                 elif new_list =='c':
-                    lists['c_list'].append(lists[i][lists[i].index(y)])
-                    del lists[i][lists[i].index(y)]
+                    lists['c_list'].append(lists[sub_list][lists[sub_list].index(y)])
+                    del lists[sub_list][lists[sub_list].index(y)]
                     print('Friend successfully moved to List C')
                     return
                 
                 elif new_list == 'd':
-                    lists['d_list'].append(lists[i][lists[i].index(y)])
-                    del lists[i][lists[i].index(y)]
+                    lists['d_list'].append(lists[sub_list][lists[sub_list].index(y)])
+                    del lists[sub_list][lists[sub_list].index(y)]
                     print('Friend successfully moved to List D')
                     return
                 
     print('Sorry, something went wrong')
 
-
+#function adding +1 to day_number - will be run once a day
 def day_number_add_one():
-    for i in lists:
-        for y in lists[i]:
-            lists[i][lists[i].index(y)]['day_number'] += 1
+    for sub_list in lists:
+        for y in lists[sub_list]:
+            lists[sub_list][lists[sub_list].index(y)]['day_number'] += 1
 
-
+#function to check who must be contacted today
 def whom_contact_today():
     a_days = 21
     b_days = 60
     c_days = 180
     d_days = 365
     
-    #last contacted
-    for i in lists:
+    for sub_list in lists:
         
-        if i == 'a_list':
+        if sub_list == 'a_list':
             for y in lists['a_list']:
                 if lists['a_list'][lists['a_list'].index(y)]['day_number'] == a_days:
                     #Send_email
-                    #reset day_number to 0
                     lists['a_list'][lists['a_list'].index(y)]['day_number'] = 0
                     lists['a_list'][lists['a_list'].index(y)]['last_contacted'] = date.strftime("%Y/%m/%d")
         
-        if i == 'b_list':
+        if sub_list == 'b_list':
             for y in lists['b_list']:
                 if lists['b_list'][lists['b_list'].index(y)]['day_number'] == b_days:
-                    #then send_message
                     #reset day_number to 0
                     lists['b_list'][lists['b_list'].index(y)]['day_number'] = 0
                     lists['b_list'][lists['b_list'].index(y)]['last_contacted'] = date.strftime("%Y/%m/%d")
         
-        if i == 'c_list':
+        if sub_list == 'c_list':
             for y in lists['c_list']:
                 if lists['c_list'][lists['c_list'].index(y)]['day_number'] == c_days:
-                    #then send_message
                     #reset day_number to 0
                     lists['c_list'][lists['c_list'].index(y)]['day_number'] = 0
                     lists['c_list'][lists['c_list'].index(y)]['last_contacted'] = date.strftime("%Y/%m/%d")
         
-        if i == 'd_list':
+        if sub_list == 'd_list':
             for y in lists['d_list']:
                 if lists['d_list'][lists['d_list'].index(y)]['day_number'] == d_days:
-                    #then send_message
                     #reset day_number to 0
                     lists['d_list'][lists['d_list'].index(y)]['day_number'] = 0
                     lists['d_list'][lists['d_list'].index(y)]['last_contacted'] = date.strftime("%Y/%m/%d")
@@ -199,35 +187,35 @@ while True:
 #Function sending email reminder to contact friend via sendgrid etc.
     #user Sendgrid
 
-#Check for duplicaates if friend exists - so no duplicate items.
-
-
 def extra_commands():
-    extra_command = input('Would you like to perform anything else? Yes / No \n')
+    extra_command = input('Would you like to perform anything else? \n')
     if extra_command == 'yes':
         run_system()
     else:
-        print('Bye')
+        print('Good bye')
 
 
 def run_system():
-    command = input('Please enter a command: \n add - to add new friend \n rename - to rename friend \n move - to move friend to new list \n remove - to remove friend \n show - to view current lists \n Command: ')
+    command = input('Please enter a command: \n add - to add new friend \n rename - to rename friend \n move - to move friend to new list \n remove - to remove friend \n show - to view current lists \n quit - to quit \n Command: ')
     
     if command.lower() == 'add':
         add_friend()
-        extra_commands()
+        run_system()
         
     elif command.lower() == 'rename':
         rename_friend()
-        extra_commands()
+        run_system()
             
     elif command.lower() == 'move':
         move_to_other_list()
-        extra_commands()
+        run_system()
             
     elif command.lower() == 'remove':
         remove_friend()
-        extra_commands()
+        run_system()
+    
+    elif command.lower() == 'quit':
+        print('Good bye')
     
     elif command.lower() == 'show':
         print('A List \n')
@@ -253,10 +241,30 @@ def run_system():
             if i == 'd_list':
                 for y in lists['d_list']:
                     print(y['name'],'| Last contacted',y['last_contacted'])
-        extra_commands()
+        run_system()
               
             
     else:
         run_system()
 
+
 run_system()
+
+
+
+#Further improvement ideas:
+
+#Add sending emails to 'Whom to contact function'
+    #ask user to give his email - where emails should be sent   
+
+#Make that schedule module, does not stop other operations to be performed simultanuesly
+
+#Show when it's expected to contact a friend - Next contact day 
+
+#Sort lists of friends after friend is added
+
+#Check for duplicates
+
+#Create nice displays - with html/css/js
+
+#allow users to register - to use system

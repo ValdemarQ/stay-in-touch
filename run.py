@@ -54,6 +54,17 @@ def check_friends_name():
             return new_friend
         new_friend = input('Only Letters and whitespaces allowed \n')  
 
+
+def is_name_duplicate(name):
+   
+    while True:
+        for sub_list in lists:
+            for person in lists[sub_list]:
+                if person['name'] == name.lower():
+                    return True
+        return False        
+
+
 def check_list():
     possible_lists = ('abcd')
     add_friend_to_list = input('Into which list you want to add friend? A,B,C,D \n')

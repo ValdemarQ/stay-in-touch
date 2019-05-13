@@ -129,6 +129,7 @@ def rename_friend():
                 print('Friend is found. Enter new name for a friend')
                 new_name = check_friends_name()
                 lists[sub_list][lists[sub_list].index(y)]['name'] = new_name
+                print("New name has been saved", new_name)
                 return
     print('Friend not found')
                 

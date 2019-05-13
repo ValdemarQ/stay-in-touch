@@ -2,6 +2,7 @@ import datetime
 import schedule
 import time
 import os
+import operator
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 
@@ -238,18 +239,18 @@ while True:
 
 def send_email(friend_name):
     message = Mail(
-    from_email = sys_ender_email,
-    to_emails = receiver_email,
-    subject='It is time to contact ' + friend_name,
-    html_content='Hey there \n It is about time to contact your', friend_name)
-try:
-    sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
-    response = sg.send(message)
-    print(response.status_code)
-    print(response.body)
-    print(response.headers)
-except Exception as e:
-    print(e.message)
+        from_email = sys_ender_email,
+        to_emails = receiver_email,
+        subject='It is time to contact ' + friend_name,
+        html_content='Hey there \n It is about time to contact your friend'+friend_name)
+    try:
+        sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
+        response = sg.send(message)
+        print(response.status_code)
+        print(response.body)
+        print(response.headers)
+    except Exception as e:
+        print(e.message)
 
 
 
@@ -284,6 +285,7 @@ def run_system():
         print('Good bye')
     
     elif command.lower() == 'show':
+        sort_lists_of_dicts()
         print('A List \n')
         for i in lists:
             if i == 'a_list':

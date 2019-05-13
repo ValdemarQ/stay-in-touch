@@ -37,19 +37,8 @@ If you want to have deep, meaningful relationships with your friends, family, an
 
 '''
 
-
-
-
 #Dicionary of lists where date is store
 lists = {'a_list': [],'b_list': [], 'c_list': [], 'd_list': []}
-
-#what to do with class?
-class Friend:
-    def __init__(self,name,list_to,contact_date, just_date):
-        self.name = name
-        self.list_to = list_to
-        self.contact_date = contact_date
-        self.just_date = just_date
 
 
 def check_friends_name():
@@ -80,7 +69,7 @@ def check_list():
             return add_friend_to_list.lower()
         add_friend_to_list = input('Into which list you want to add friend? A,B,C,D \n')
 
-
+#Problematic, Capital letters go before Lowercase letters.
 def sort_lists_of_dicts():
     for sub_list in lists:
         lists[sub_list].sort(key=operator.itemgetter('name'))
@@ -118,6 +107,7 @@ def add_friend():
         add_friend()
 
 def remove_friend():
+    print('Enter name of a person you want to remove')
     friend_name = check_friends_name()
 
     for sub_list in lists:
@@ -236,7 +226,6 @@ while True:
     time.sleep(1)'''
 
 
-
 def send_email(friend_name):
     message = Mail(
         from_email = sys_ender_email,
@@ -319,16 +308,11 @@ def run_system():
 run_system()
 
 
-
 #Further improvement ideas:
-
-#Add sending emails to 'Whom to contact function'
-    #ask user to give his email - where emails should be sent   
-
-#Make that schedule module, does not stop other operations to be performed simultanuesly
-
-#Show when it's expected to contact a friend - Next contact day 
-
-#Create nice displays - with html/css/js
-
-#allow users to register - to use system
+    #fix - Sorting
+    #Make that schedule module, does not stop other operations to be performed simultanuesly
+    #Show when it's expected to contact a friend - Next contact day 
+    #Create nice displays - with html/css/js
+    #allow users to register - send emails to registered email
+    #connect db
+    #if list is empty - display message - list is empty

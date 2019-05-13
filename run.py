@@ -1,8 +1,13 @@
 import datetime
 import schedule
 import time
+import os
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
 
 date = datetime.datetime.now()
+sys_ender_email = 'info@wizen.lt'
+receiver_email = 'valdemar.tunkevic@gmail.com'
 
 
 #Print Greetings message with information
@@ -193,28 +198,28 @@ def whom_contact_today():
         if sub_list == 'a_list':
             for y in lists['a_list']:
                 if lists['a_list'][lists['a_list'].index(y)]['day_number'] == a_days:
-                    #Send_email
+                    send_email(y['name'])
                     lists['a_list'][lists['a_list'].index(y)]['day_number'] = 0
                     lists['a_list'][lists['a_list'].index(y)]['last_contacted'] = date.strftime("%Y/%m/%d")
         
         if sub_list == 'b_list':
             for y in lists['b_list']:
                 if lists['b_list'][lists['b_list'].index(y)]['day_number'] == b_days:
-                    #reset day_number to 0
+                    send_email(y['name'])
                     lists['b_list'][lists['b_list'].index(y)]['day_number'] = 0
                     lists['b_list'][lists['b_list'].index(y)]['last_contacted'] = date.strftime("%Y/%m/%d")
         
         if sub_list == 'c_list':
             for y in lists['c_list']:
                 if lists['c_list'][lists['c_list'].index(y)]['day_number'] == c_days:
-                    #reset day_number to 0
+                    send_email(y['name'])
                     lists['c_list'][lists['c_list'].index(y)]['day_number'] = 0
                     lists['c_list'][lists['c_list'].index(y)]['last_contacted'] = date.strftime("%Y/%m/%d")
         
         if sub_list == 'd_list':
             for y in lists['d_list']:
                 if lists['d_list'][lists['d_list'].index(y)]['day_number'] == d_days:
-                    #reset day_number to 0
+                    send_email(y['name'])
                     lists['d_list'][lists['d_list'].index(y)]['day_number'] = 0
                     lists['d_list'][lists['d_list'].index(y)]['last_contacted'] = date.strftime("%Y/%m/%d")
 
@@ -229,8 +234,24 @@ while True:
     schedule.run_pending()
     time.sleep(1)'''
 
-#Function sending email reminder to contact friend via sendgrid etc.
-    #user Sendgrid
+
+
+def send_email(friend_name):
+    message = Mail(
+    from_email = sys_ender_email,
+    to_emails = receiver_email,
+    subject='It is time to contact ' + friend_name,
+    html_content='Hey there \n It is about time to contact your', friend_name)
+try:
+    sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
+    response = sg.send(message)
+    print(response.status_code)
+    print(response.body)
+    print(response.headers)
+except Exception as e:
+    print(e.message)
+
+
 
 def extra_commands():
     extra_command = input('Would you like to perform anything else? \n')
@@ -305,10 +326,6 @@ run_system()
 #Make that schedule module, does not stop other operations to be performed simultanuesly
 
 #Show when it's expected to contact a friend - Next contact day 
-
-#Sort lists of friends after friend is added
-
-#Check for duplicates
 
 #Create nice displays - with html/css/js
 

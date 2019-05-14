@@ -89,19 +89,19 @@ def add_friend():
         #appends friend to chosen list
         if list_to_add == 'a':
             print('Friend successfully added to list A')
-            lists['a_list'] += [{'name': friend_name, 'last_contacted': last_contacted, 'day_number': 0}]
+            lists['a_list'] += [{'name': friend_name.lower(), 'last_contacted': last_contacted, 'day_number': 0}]
 
         elif list_to_add == 'b':
             print('Friend successfully added to list B')
-            lists['b_list'] += [{'name': friend_name, 'last_contacted': last_contacted, 'day_number': 0}]
+            lists['b_list'] += [{'name': friend_name.lower(), 'last_contacted': last_contacted, 'day_number': 0}]
 
         elif list_to_add == 'c':
             print('Friend successfully added to list C')
-            lists['c_list'] += [{'name': friend_name, 'last_contacted': last_contacted, 'day_number': 0}]
+            lists['c_list'] += [{'name': friend_name.lower(), 'last_contacted': last_contacted, 'day_number': 0}]
 
         elif list_to_add == 'd':
             print('Friend successfully added to list D')
-            lists['d_list'] += [{'name': friend_name, 'last_contacted': last_contacted, 'day_number': 0}]
+            lists['d_list'] += [{'name': friend_name.lower(), 'last_contacted': last_contacted, 'day_number': 0}]
     #if friend exists with such name, informs and askes to make with new name       
     else:
         print('Such friend already exists')
@@ -232,11 +232,9 @@ def every(delay, task):
 
 
 #Every new day - adds 1 to day_number for all friends
-threading.Thread(target=lambda: every(20, day_number_add_one)).start()
-
-
+threading.Thread(target=lambda: every(20, day_number_add_one)).start() #Adjust later to one day
 #Every new day - checks lists to find whom to contact today
-threading.Thread(target=lambda: every(60, whom_contact_today)).start()
+threading.Thread(target=lambda: every(21, whom_contact_today)).start() #Later adjust to once/twice a day
 
 
 def send_email(friend_name):
@@ -292,25 +290,25 @@ def run_system():
         for i in lists:
             if i == 'a_list':
                 for y in lists['a_list']:
-                    print(y['name'],'| Last contacted',y['last_contacted'],'Next contact in:', 21 - y['day_number'],'days')
+                    print(y['name'].title(),'| Last contacted',y['last_contacted'],'Next contact in:', 21 - y['day_number'],'days')
         
         print('\nB List \n')
         for i in lists:
             if i == 'b_list':
                 for y in lists['b_list']:
-                    print(y['name'],'| Last contacted',y['last_contacted'], 'Next contact in:', 60 - y['day_number'],'days')
+                    print(y['name'].title(),'| Last contacted',y['last_contacted'], 'Next contact in:', 60 - y['day_number'],'days')
                     
         print('\nC List \n')
         for i in lists:
             if i == 'c_list':
                 for y in lists['c_list']:
-                    print(y['name'],'| Last contacted',y['last_contacted'], 'Next contact in:', 180 - y['day_number'],'days')
+                    print(y['name'].title(),'| Last contacted',y['last_contacted'], 'Next contact in:', 180 - y['day_number'],'days')
                     
         print('\nD List \n')
         for i in lists:
             if i == 'd_list':
                 for y in lists['d_list']:
-                    print(y['name'],'| Last contacted',y['last_contacted'], 'Next contact in:', 365 - y['day_number'],'days')
+                    print(y['name'].title(),'| Last contacted',y['last_contacted'], 'Next contact in:', 365 - y['day_number'],'days')
         run_system()
               
             
@@ -322,9 +320,7 @@ run_system()
 
 
 #Further improvement ideas:
-    #fix - Sorting
-    #Make that schedule module, does not stop other operations to be performed simultanuesly
-    #Show when it's expected to contact a friend - Next contact day 
+    #fix - Sorting 
     #Create nice displays - with html/css/js
     #allow users to register - send emails to registered email
     #connect db

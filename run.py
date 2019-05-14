@@ -1,8 +1,9 @@
 import datetime
-import schedule
 import time
 import os
 import operator
+import threading 
+import traceback
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 
@@ -216,14 +217,27 @@ def whom_contact_today():
 
 
 
-#Every new day - adds 1 to day_number for all friends
-#Every new day - checks lists to find whom to contact today
-'''schedule.every().day.at("10:30").do(day_number_add_one)
-schedule.every().day.at("12:30").do(whom_contact_today)
 
-while True:
-    schedule.run_pending()
-    time.sleep(1)'''
+def every(delay, task):
+  next_time = time.time() + delay
+  while True:
+    time.sleep(max(0, next_time - time.time()))
+    try:
+      task()
+    except Exception:
+      traceback.print_exc()
+      # in production code you might want to have this instead of course:
+      # logger.exception("Problem while executing repetitive task.")
+    # skip tasks if we are behind schedule:
+    next_time += (time.time() - next_time) // delay * delay + delay
+
+
+#Every new day - adds 1 to day_number for all friends
+threading.Thread(target=lambda: every(20, day_number_add_one)).start()
+
+
+#Every new day - checks lists to find whom to contact today
+threading.Thread(target=lambda: every(60, whom_contact_today)).start()
 
 
 def send_email(friend_name):

@@ -217,7 +217,6 @@ def whom_contact_today():
 
 
 
-
 def every(delay, task):
   next_time = time.time() + delay
   while True:
@@ -293,25 +292,25 @@ def run_system():
         for i in lists:
             if i == 'a_list':
                 for y in lists['a_list']:
-                    print(y['name'],'| Last contacted',y['last_contacted'])
+                    print(y['name'],'| Last contacted',y['last_contacted'],'Next contact in:', 21 - y['day_number'],'days')
         
         print('\nB List \n')
         for i in lists:
             if i == 'b_list':
                 for y in lists['b_list']:
-                    print(y['name'],'| Last contacted',y['last_contacted'])
+                    print(y['name'],'| Last contacted',y['last_contacted'], 'Next contact in:', 60 - y['day_number'],'days')
                     
         print('\nC List \n')
         for i in lists:
             if i == 'c_list':
                 for y in lists['c_list']:
-                    print(y['name'],'| Last contacted',y['last_contacted'])
+                    print(y['name'],'| Last contacted',y['last_contacted'], 'Next contact in:', 180 - y['day_number'],'days')
                     
         print('\nD List \n')
         for i in lists:
             if i == 'd_list':
                 for y in lists['d_list']:
-                    print(y['name'],'| Last contacted',y['last_contacted'])
+                    print(y['name'],'| Last contacted',y['last_contacted'], 'Next contact in:', 365 - y['day_number'],'days')
         run_system()
               
             

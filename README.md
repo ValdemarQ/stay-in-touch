@@ -11,3 +11,12 @@ App helps to Stay in touch with hundreds of people. To Have Great Relationships,
 **C list**: Most people. Contact every six months (180 days). 
 
 **D list**: Demoted people. Contact once a year, to make sure you still have their correct info. (365 days)
+
+
+### Installation: 
+
+Installation is the next section in an effective README. Tell other users how to install your project locally. Optionally, include a gif to make the process even more clear for other people.
+
+### Usage: 
+
+The next section is usage, in which you instruct other people on how to use your project after they’ve installed it. This would also be a good place to include screenshots of your project in action.

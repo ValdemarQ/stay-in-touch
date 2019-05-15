@@ -51,7 +51,7 @@ def check_list():
             return add_friend_to_list.lower()
         add_friend_to_list = input('Into which list you want to add friend? A,B,C,D \n')
 
-
+#Problematic, Capital letters go before Lowercase letters.
 def sort_lists_of_dicts():
     for sub_list in lists:
         lists[sub_list].sort(key=operator.itemgetter('name'))

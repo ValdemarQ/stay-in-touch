@@ -22,6 +22,7 @@ Simply add people you want to keep in touch into the following lists, and system
 Do following before runinig, the system:
 
 1. Open run.py file in your code editor, set your email where you will receive notifications to: 
+
 `receiver_email = 'your_email@domain.com'`
 
 2. Register on https://sendgrid.com/ & create receive SECRET API KEY
@@ -29,11 +30,15 @@ Do following before runinig, the system:
 3. Setup Environment Variables for Sendgrid. 
 
 **MAC**
-`echo "export SENDGRID_API_KEY='YOUR_API_KEY'" > sendgrid.env
+
+```
+echo "export SENDGRID_API_KEY='YOUR_API_KEY'" > sendgrid.env
 echo "sendgrid.env" >> .gitignore
-source ./sendgrid.env`
+source ./sendgrid.env
+```
 
 **Windows**
+
 `setx SENDGRID_API_KEY "YOUR_API_KEY"`
 
 ### Dependencies

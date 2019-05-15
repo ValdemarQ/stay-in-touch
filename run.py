@@ -51,7 +51,7 @@ def check_list():
             return add_friend_to_list.lower()
         add_friend_to_list = input('Into which list you want to add friend? A,B,C,D \n')
 
-#Problematic, Capital letters go before Lowercase letters.
+
 def sort_lists_of_dicts():
     for sub_list in lists:
         lists[sub_list].sort(key=operator.itemgetter('name'))
@@ -213,9 +213,9 @@ def every(delay, task):
 
 
 #Every new day - adds 1 to day_number for all friends
-threading.Thread(target=lambda: every(20, day_number_add_one)).start() #Adjust later to one day
+threading.Thread(target=lambda: every(86400, day_number_add_one)).start() #Adjust later to one day
 #Every new day - checks lists to find whom to contact today
-threading.Thread(target=lambda: every(21, whom_contact_today)).start() #Later adjust to once/twice a day
+threading.Thread(target=lambda: every(86400, whom_contact_today)).start() #Later adjust to once/twice a day
 
 
 def send_email(friend_name):

@@ -41,6 +41,8 @@ source ./sendgrid.env
 
 `setx SENDGRID_API_KEY "YOUR_API_KEY"`
 
+4. Run the Run.py
+
 ### Dependencies
 * [sendgrid](https://github.com/sendgrid/sendgrid-python)
 

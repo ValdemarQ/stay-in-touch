@@ -2,7 +2,11 @@
 Vilnius School of AI (Class D Project)
 
 ## About
-App helps to Stay in touch with hundreds of people. To Have Great Relationships, Always Make the First Move. The meaning is simple: if you can help the relationship, then do it. This app just does that, helps you keep strong and healthy relations. Simply add people you want to keep in touch into the following lists, and system will remind you to contact them on the right dates by sending email.
+App helps to Stay in touch with hundreds of people. To Have Great Relationships, Always Make the First Move. The meaning is simple: if you can help the relationship, then do it. This app just does that, helps you keep strong and healthy relations. 
+
+### Usage: 
+
+Simply add people you want to keep in touch into the following lists, and system will remind you to contact them on the right dates by sending email.
 
 **A list**: Very important people. Contact every three weeks (21 days).
 
@@ -15,8 +19,23 @@ App helps to Stay in touch with hundreds of people. To Have Great Relationships,
 
 ### Installation: 
 
-Installation is the next section in an effective README. Tell other users how to install your project locally. Optionally, include a gif to make the process even more clear for other people.
+Do following before runinig, the system:
 
-### Usage: 
+1. Open run.py file in your code editor, set your email where you will receive notifications to: 
+`receiver_email = 'your_email@domain.com'`
 
-The next section is usage, in which you instruct other people on how to use your project after they’ve installed it. This would also be a good place to include screenshots of your project in action.
+2. Register on https://sendgrid.com/ & create receive SECRET API KEY
+
+3. Setup Environment Variables for Sendgrid. 
+
+**MAC**
+`echo "export SENDGRID_API_KEY='YOUR_API_KEY'" > sendgrid.env
+echo "sendgrid.env" >> .gitignore
+source ./sendgrid.env`
+
+**Windows**
+`setx SENDGRID_API_KEY "YOUR_API_KEY"`
+
+### Dependencies
+* [sendgrid](https://github.com/sendgrid/sendgrid-python)
+
